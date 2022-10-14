@@ -5,6 +5,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+/*
+This is my model for the users table using persistence to map this entity
+ */
 @Entity
 @Table(name = "users")
 public class User {

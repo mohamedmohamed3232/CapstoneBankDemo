@@ -4,7 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
-
+/*
+This is my model for the payments table using persistence to map this entity
+ */
 @Entity
 @Table(name = "payments")
 public class Payment {

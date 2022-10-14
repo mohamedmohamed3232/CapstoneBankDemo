@@ -5,7 +5,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
+/*
+This is my model for the accounts table using persistence to map this entity
+ */
 @Entity
 @Table(name = "accounts")
 public class Account {
