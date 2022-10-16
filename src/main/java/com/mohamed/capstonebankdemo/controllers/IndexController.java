@@ -31,4 +31,12 @@ public class IndexController {
         return getLoginPage;
 
     }
+    //Mapping the error page
+    @GetMapping("/error")
+    public ModelAndView getError() {
+        ModelAndView getErrorPage = new ModelAndView("error");
+        getErrorPage.addObject("PageTitle", "Errors");
+        System.out.println("Error Page controller Working");
+        return getErrorPage;
+    }
 }
