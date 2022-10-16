@@ -23,14 +23,6 @@ public class IndexController {
         return getLoginPage;
 
     }
-    @GetMapping("/register")
-    public ModelAndView getRegister() {
-        ModelAndView getLoginPage = new ModelAndView("register");
-        System.out.println("Register page Contorller Working");
-        getLoginPage.addObject("PageTitle", "Register");
-        return getLoginPage;
-
-    }
     //Mapping the error page
     @GetMapping("/error")
     public ModelAndView getError() {
