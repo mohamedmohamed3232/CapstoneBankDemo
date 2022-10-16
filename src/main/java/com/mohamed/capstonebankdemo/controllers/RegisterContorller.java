@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+/*
+This is the controller to control the registration page of the application
+ */
 @Controller
 public class RegisterContorller {
-
+//Mapping for registration page
     @GetMapping("/register")
     public ModelAndView getRegister() {
         ModelAndView getLoginPage = new ModelAndView("register");
@@ -21,7 +24,7 @@ public class RegisterContorller {
         return getLoginPage;
 
     }
-
+//Post mapping in order to retrieve the information form the user to register
     @PostMapping("/register")
     public ModelAndView register(@Valid @ModelAttribute("registerUser")
                                  User user, BindingResult result,
