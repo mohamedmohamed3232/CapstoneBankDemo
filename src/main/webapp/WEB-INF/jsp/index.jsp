@@ -6,59 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="css/fontawesome/css/all.css">
-    <style>
-        *{
-            box-sizing: border-box;
-            font-family: Comfortaa;
-        }
-        body{
-            height: 100vh;
-            background-image: url("./images/main_bg.png");
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-        }
-        .card{
-            box-shadow: 0px 3px 6px rgb(0, 14, 53);
-        }
-        .card .card-text{
-            font-size: 16px;
-        }
-    </style>
-    <title>Errors</title>
+    <link rel="stylesheet" href="css/default.css">
+    <title>Home</title>
 </head>
-<body class="d-flex align-items-center justify-content-center">
+<body class="d-flex align-items-center">
 
-<!-- Card: Error Card -->
-<div class="card col-4 alert alert-danger border border-danger text-danger">
-    <!-- Card Title -->
-    <h3 class="card-title">
-        <i class="fa fa-window-close me-2"></i>Errors:
-    </h3>
-    <!-- End Of Card Title -->
-    <hr>
+<!-- Card : Sample Text -->
+<div id="sample-text-card" class="card col-6 bg-transparent border-0">
     <!-- Card Body -->
     <div class="card-body">
+        <!-- Card Header -->
+        <h1 class="mb-3">Mo Bank</h1>
+        <!-- End Card Header -->
+
+        <!-- Card Title -->
+        <h5 class="card-title">
+            Flexible Banking Solutions
+        </h5>
+        <!-- End Of Card Title -->
+
         <!-- Card Text -->
-        <p class="card-text">
-            <!-- Display Message -->
-            <c:if test="${requestScope.error != null}">
-        <div class="alert alert-danger text-center border border-danger">
-            <b>${requestScope.error}</b>
-        </div>
-        </c:if>
-        <!-- End Of Display Message -->
+        <p class="card-text" style="color: white">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam fuga,
+            cupiditate temporibus magnam voluptatibus eaque laudantium,
+            maxime nemo est iste voluptate veniam sequi optio nesciunt! Perspiciatis officia,
+            dolor qui nesciunt aspernatur sequi minima totam. Recusandae deserunt expedita vel excepturi perferendis necessitatibus,
+            saepe laudantium distinctio officia aliquam, reprehenderit suscipit nostrum aspernatur?
         </p>
         <!-- End Of Card Text -->
-        <hr>
-        <!-- Back To Login Page -->
-        <a href="/login" class="btn btn-sm btn-danger">
-            <i class="fa fa-arrow-alt-circle-left me-1"></i> Back
-        </a>
-        <!-- End Of Back To Login Page -->
+
+        <!-- Button Wrapper -->
+        <div class="button-wrapper d-flex align-items-center">
+            <a href="/register" class="btn btn-md register" role="button">Register</a>
+            <a href="/login" class="btn btn-md login" role="button">Login</a>
+        </div>
+        <!-- End Of Button Wrapper -->
+
     </div>
     <!-- End Of Card Body -->
+
 </div>
-<!-- End Of Card: Error Card -->
+<!-- End Of Card : Sample Text -->
 </body>
 </html>
