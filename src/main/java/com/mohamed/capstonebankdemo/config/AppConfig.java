@@ -3,6 +3,7 @@ package com.mohamed.capstonebankdemo.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -14,6 +15,14 @@ the application works smoothly
 @Configuration
 @ComponentScan(basePackages = {"com.mohamed.capstonebankdemo"})
 public class AppConfig extends WebMvcConfigurationSupport {
+//Telling the application where the resources are to ensure it uses css and images
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("css/**","images/**","js/**")
+                .addResourceLocations("classpath:/static/css/","classpath:/static/images/","classpath:/static/js/");
+    }
+
+
     //Telling the application where to find the pages
     @Bean
     public InternalResourceViewResolver viewResolver() {
