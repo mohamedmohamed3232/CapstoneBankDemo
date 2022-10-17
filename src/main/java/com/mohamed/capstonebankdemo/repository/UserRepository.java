@@ -14,6 +14,13 @@ This is the repository for the User Table (connects to the user entity)
  */
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
+    //Query in order to get the users email
+    @Query(value = "SELECT email FROM users WHERE email = :email", nativeQuery = true)
+    String getUserEmail(@Param("email") String email);
+    //Query in order to get the users password
+    @Query(value = "SELECT password FROM users WHERE email = :email", nativeQuery = true)
+    String getUserPassword(@Param("email") String email);
+    //Query in order to register the user
     @Modifying
     @Query(value ="INSERT INTO users(first_name, last_name, email, password) Values" +
             "(:first_name, :last_name, :email, :password)", nativeQuery = true)
@@ -24,4 +31,5 @@ public interface UserRepository extends CrudRepository<User, Integer> {
                       @Param("password") String password);
 
 }
+
 
