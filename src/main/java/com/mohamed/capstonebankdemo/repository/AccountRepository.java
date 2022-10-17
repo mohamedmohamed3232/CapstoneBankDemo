@@ -21,6 +21,14 @@ public interface AccountRepository extends CrudRepository<Account, Integer> {
     // using userID
     @Query(value = "SELECT sum(balance) FROM accounts WHERE user_id = :user_id", nativeQuery = true)
     BigDecimal getTotalBalance(@Param("user_id") int user_id);
+    // Query to get the users account balance through UserId
+    @Query(value = "SELECT balance FROM accounts WHERE user_id = :user_id AND :account_id = account_id", nativeQuery = true)
+    double getAccountBalance(@Param("user_id") int user_id, @Param("account_id") int account_id);
+    //This is a query to update the balance after the user goes through a transaction
+    @Modifying
+    @Query(value ="UPDATE accounts SET balance = :new_balance WHERE account_id = :account_id" , nativeQuery = true)
+    @Transactional
+    void changeAccountBalanceById(@Param("new_balance") double new_balance, @Param("account_id") int account_id);
 
     //Query where we are inserting the User details into the user database
     @Modifying
