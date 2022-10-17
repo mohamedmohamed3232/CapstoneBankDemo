@@ -1,6 +1,9 @@
 package com.mohamed.capstonebankdemo.controllers;
 
 import com.mohamed.capstonebankdemo.models.User;
+import com.mohamed.capstonebankdemo.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +17,10 @@ import javax.validation.Valid;
 This is the controller to control the registration page of the application
  */
 @Controller
-public class RegisterContorller {
+public class RegisterController {
+    //Creating an instance of the repository in order to use
+    @Autowired
+    private UserRepository userRepository;
 //Mapping for registration page
     @GetMapping("/register")
     public ModelAndView getRegister() {
@@ -39,6 +45,20 @@ public class RegisterContorller {
             registrationPage.addObject("confirm_pass", "The comfirm field is required");
             return registrationPage;
         }
+        // Check if the password matches
+        if (!password.equals(confirm_password)) {
+            registrationPage.addObject("passwordMisMatch", "The passwords did not match" );
+            return registrationPage;
+        }
+        // Hashing the password for security
+        String hashed_password = BCrypt.hashpw(password, BCrypt.gensalt());
+
+        // Here we will register the user
+        userRepository.registerUser(first_name, last_name, email, hashed_password);
+
+        //Successful Registration method
+        String successMessage = "Account was registered successfully!";
+        registrationPage.addObject("success", successMessage);
         return registrationPage;
     }
 }
