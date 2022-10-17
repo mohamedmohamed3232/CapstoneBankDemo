@@ -14,15 +14,6 @@ public class IndexController {
         System.out.println("In the Index Controller");
         return getIndexPage;
     }
-    //Mapping the login page
-    @GetMapping("/login")
-    public ModelAndView getLogin() {
-        ModelAndView getLoginPage = new ModelAndView("login");
-        System.out.println("Login Page Controller Working");
-        getLoginPage.addObject("PageTitle", "Login");
-        return getLoginPage;
-
-    }
     //Mapping the error page
     @GetMapping("/error")
     public ModelAndView getError() {
