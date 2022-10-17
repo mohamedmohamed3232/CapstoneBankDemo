@@ -1,5 +1,6 @@
 package com.mohamed.capstonebankdemo.controllers;
 
+import com.mohamed.capstonebankdemo.models.User;
 import com.mohamed.capstonebankdemo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -50,7 +51,10 @@ public class AuthController {
             model.addAttribute("error", "Something Blew up please rerun or just RUN!");
             return "error";
         }
-        return "login";
+        User user = userRepository.getUserDetails(getEmailInDatabase);
+        session.setAttribute("user", user);
+        session.setAttribute("authenticated", true);
+        return "redirect:/app/dashboard";
 
     }
 }

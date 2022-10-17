@@ -20,6 +20,11 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     //Query in order to get the users password
     @Query(value = "SELECT password FROM users WHERE email = :email", nativeQuery = true)
     String getUserPassword(@Param("email") String email);
+
+    //Query to get the user by email
+    @Query(value = "SELECT * FROM users WHERE email = :email", nativeQuery = true)
+    User getUserDetails(@Param("email") String email);
+
     //Query in order to register the user
     @Modifying
     @Query(value ="INSERT INTO users(first_name, last_name, email, password) Values" +
