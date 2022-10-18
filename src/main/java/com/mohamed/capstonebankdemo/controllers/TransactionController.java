@@ -125,4 +125,42 @@ public class TransactionController {
 
 
     }
+    @PostMapping("/withdraw")
+    public String withdraw(@RequestParam("withdrawal_amount") String withdrawalAmount,
+                           @RequestParam("account_id") String accountId,
+                           HttpSession session,
+                           RedirectAttributes redirectAttributes) {
+        //Checking for empty
+        if (withdrawalAmount.isEmpty() || accountId.isEmpty() || withdrawalAmount.isBlank() ) {
+            redirectAttributes.addFlashAttribute("error", "Must have a valid withdrawal amount and account");
+            return "redirect:/app/dashboard";
+        }
+        //Converting amount and id to numbers
+        double withdrawalAmt = Double.parseDouble(withdrawalAmount);
+        int account_Id = Integer.parseInt(accountId);
+
+        //Checking to see if the amount is less than or equal to zero
+        if (withdrawalAmt <= 0) {
+            redirectAttributes.addFlashAttribute("error", "Withdrawal amount must be greater than zero");
+            return "redirect:/app/dashboard";
+        }
+        //Getting the logged in user through the active session
+        user =(User)session.getAttribute("user");
+
+        //Getting the account balance currently
+        currentBalance = accountRepository.getAccountBalance(user.getUser_id(), account_Id);
+
+        //Setting the new balance after the user withdraws
+        if (withdrawalAmt>currentBalance) {
+
+            redirectAttributes.addFlashAttribute("error", "Insufficient funds ");
+            return "redirect:/app/dashboard";
+        }
+        new_balance = currentBalance - withdrawalAmt;
+
+        // Updating the users account balance
+        accountRepository.changeAccountBalanceById(new_balance, account_Id);
+        redirectAttributes.addFlashAttribute("success", "Withdrawal was Successful!");
+        return "redirect:/app/dashboard";
+    }
 }
