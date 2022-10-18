@@ -42,7 +42,7 @@ public class RegisterController {
         ModelAndView registrationPage = new ModelAndView("register");
         // Check for errors:
         if (result.hasErrors() && confirm_password.isEmpty()) {
-            registrationPage.addObject("confirm_pass", "The comfirm field is required");
+            registrationPage.addObject("confirm_pass", "The confirm field is required");
             return registrationPage;
         }
         // Check if the password matches
