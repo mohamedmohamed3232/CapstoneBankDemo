@@ -85,4 +85,32 @@ public class Account {
     public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
     }
+
+    public Account() {
+    }
+
+    public Account(int account_id, int user_id, String account_number, String account_name, String account_type, BigDecimal balance, LocalDateTime created_at, LocalDateTime updated_at) {
+        this.account_id = account_id;
+        this.user_id = user_id;
+        this.account_number = account_number;
+        this.account_name = account_name;
+        this.account_type = account_type;
+        this.balance = balance;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "account_id=" + account_id +
+                ", user_id=" + user_id +
+                ", account_number='" + account_number + '\'' +
+                ", account_name='" + account_name + '\'' +
+                ", account_type='" + account_type + '\'' +
+                ", balance=" + balance +
+                ", created_at=" + created_at +
+                ", updated_at=" + updated_at +
+                '}';
+    }
 }

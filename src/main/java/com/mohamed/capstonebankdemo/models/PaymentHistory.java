@@ -1,21 +1,22 @@
 package com.mohamed.capstonebankdemo.models;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
-/*
-This is my model for the payments table using persistence to map this entity
- */
+
 @Entity
-@Table(name = "payments")
-public class Payment {
+@Table(name = "v_payments")
+public class PaymentHistory {
     @Id
     private int payment_id;
     private int account_id;
+    private int user_id;
     private String beneficiary;
     private String beneficiary_acc_no;
     private double amount;
+    private String status;
     private String reference_no;
     private String reason_code;
     private LocalDateTime created_at;
@@ -34,6 +35,14 @@ public class Payment {
 
     public void setAccount_id(int account_id) {
         this.account_id = account_id;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getBeneficiary() {
@@ -60,6 +69,14 @@ public class Payment {
         this.amount = amount;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getReference_no() {
         return reference_no;
     }
@@ -84,15 +101,17 @@ public class Payment {
         this.created_at = created_at;
     }
 
-    public Payment() {
+    public PaymentHistory() {
     }
 
-    public Payment(int payment_id, int account_id, String beneficiary, String beneficiary_acc_no, double amount, String reference_no, String reason_code, LocalDateTime created_at) {
+    public PaymentHistory(int payment_id, int account_id, int user_id, String beneficiary, String beneficiary_acc_no, double amount, String status, String reference_no, String reason_code, LocalDateTime created_at) {
         this.payment_id = payment_id;
         this.account_id = account_id;
+        this.user_id = user_id;
         this.beneficiary = beneficiary;
         this.beneficiary_acc_no = beneficiary_acc_no;
         this.amount = amount;
+        this.status = status;
         this.reference_no = reference_no;
         this.reason_code = reason_code;
         this.created_at = created_at;
@@ -100,12 +119,14 @@ public class Payment {
 
     @Override
     public String toString() {
-        return "Payment{" +
+        return "PaymentHistory{" +
                 "payment_id=" + payment_id +
                 ", account_id=" + account_id +
+                ", user_id=" + user_id +
                 ", beneficiary='" + beneficiary + '\'' +
                 ", beneficiary_acc_no='" + beneficiary_acc_no + '\'' +
                 ", amount=" + amount +
+                ", status='" + status + '\'' +
                 ", reference_no='" + reference_no + '\'' +
                 ", reason_code='" + reason_code + '\'' +
                 ", created_at=" + created_at +

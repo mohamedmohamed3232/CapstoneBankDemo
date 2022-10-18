@@ -84,4 +84,30 @@ public class User {
     public void setUpated_at(LocalDateTime upated_at) {
         this.updated_at = upated_at;
     }
+
+    public User() {
+    }
+
+    public User(int user_id, String first_name, String last_name, String email, String password, LocalDateTime created_at, LocalDateTime updated_at) {
+        this.user_id = user_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.password = password;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id=" + user_id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", created_at=" + created_at +
+                ", updated_at=" + updated_at +
+                '}';
+    }
 }

@@ -3,6 +3,7 @@ package com.mohamed.capstonebankdemo.controllers;
 import com.mohamed.capstonebankdemo.models.User;
 import com.mohamed.capstonebankdemo.repository.AccountRepository;
 import com.mohamed.capstonebankdemo.repository.PaymentRepository;
+import com.mohamed.capstonebankdemo.repository.TransactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,9 @@ public class TransactionController {
 
     @Autowired
     private PaymentRepository paymentRepository;
+
+    @Autowired
+    private TransactRepository transactionRepository;
 
     User user;
 
@@ -65,6 +69,10 @@ public class TransactionController {
         new_balance = currentBalance + depositAmountValue;
 
         accountRepository.changeAccountBalanceById(new_balance, acc_id);
+
+        //Using transaction logging to log this transaction
+        transactionRepository.logTransaction(acc_id, "Deposit", depositAmountValue, "Online", "Success", "Deposit was made", currentDateTime);
+        redirectAttributes.addFlashAttribute("success", "Your Deposit was Successful!");
         return "redirect:/app/dashboard";
     }
 
@@ -113,7 +121,9 @@ public class TransactionController {
 
         //Checking to see if there is sufficient funds
         if (transferAmt > currentBalanceAccFrom) {
-
+            // This is used to failed on the logged transactions
+            transactionRepository.logTransaction(transferFromId, "Transfer", transferAmt, "Online","Failed", "Insufficient Funds", currentDateTime);
+            redirectAttributes.addFlashAttribute("error", "Insufficient funds");
 
             return "redirect:/app/dashboard";
         }
@@ -128,6 +138,9 @@ public class TransactionController {
 
         // Change the Balance from the account transferring to
         accountRepository.changeAccountBalanceById(newBalanceTransferTo, transferToId);
+
+        // Using this to log the successful transfer
+        transactionRepository.logTransaction(transferFromId, "Transfer", transferAmt, "Online", "Success", "Transfer was made", currentDateTime);
 
         redirectAttributes.addFlashAttribute("success", "Amount was transferred Successfully!");
         return "redirect:/app/dashboard";
@@ -162,7 +175,8 @@ public class TransactionController {
 
         //Setting the new balance after the user withdraws
         if (withdrawalAmt > currentBalance) {
-
+            // Using this to log the successful transfer
+            transactionRepository.logTransaction(account_Id, "Withdrawal", withdrawalAmt, "Online", "Failed", "Insufficient Funds", currentDateTime);
             redirectAttributes.addFlashAttribute("error", "Insufficient funds ");
             return "redirect:/app/dashboard";
         }
@@ -170,6 +184,8 @@ public class TransactionController {
 
         // Updating the users account balance
         accountRepository.changeAccountBalanceById(new_balance, account_Id);
+        // Using this to log the successful transfer
+        transactionRepository.logTransaction(account_Id, "Withdrawal", withdrawalAmt, "Online", "Success", "Transfer", currentDateTime);
         redirectAttributes.addFlashAttribute("success", "Withdrawal was Successful!");
         return "redirect:/app/dashboard";
 
@@ -209,6 +225,8 @@ public class TransactionController {
         if (paymentAmt > currentBalance) {
             String reasonCode = "Insufficent funds";
             paymentRepository.makePayment(accountId, beneficiary, account_number, paymentAmt, reference, "Failed", reasonCode, currentDateTime);
+            //Logging the failed payment transaction
+            transactionRepository.logTransaction(accountId, "Transfer", paymentAmt, "Online", "Failed", "Insufficient Funds", currentDateTime);
             redirectAttributes.addFlashAttribute("error", "YA BROKE");
             return "redirect:/app/dashboard";
         }
@@ -216,6 +234,7 @@ public class TransactionController {
         new_balance = currentBalance - paymentAmt;
 
         //Making the actual payment
+        transactionRepository.logTransaction(accountId, "Payment", paymentAmt, "Online", "Success", "Payment was made", currentDateTime);
         String reasonCode = "Payment Processed Successfully";
         paymentRepository.makePayment(accountId, beneficiary, account_number, paymentAmt, reference, "success", reasonCode, currentDateTime);
 
