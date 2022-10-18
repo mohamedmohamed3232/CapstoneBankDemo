@@ -59,4 +59,70 @@ public class TransactionController {
         accountRepository.changeAccountBalanceById(new_balance, acc_id);
         return "redirect:/app/dashboard";
     }
+    // This is postmapping to retrieve transfer details
+    @PostMapping("/transfer")
+    public String transfer(@RequestParam("transfer_from") String transfer_from,
+                           @RequestParam("transfer_to") String transfer_to,
+                           @RequestParam("transfer_amount") String transfer_amount,
+                           HttpSession session,
+                           RedirectAttributes redirectAttributes){
+        //Checking for empty transfer fields
+        if (transfer_from.isEmpty() || transfer_to.isEmpty() || transfer_amount.isEmpty() || transfer_amount.isBlank()) {
+            redirectAttributes.addFlashAttribute("error", "Transfer names and amount can not be empty");
+            return "redirect:/app/dashboard";
+        }
+        // Converting ids and amounts
+        double transferAmt= Double.parseDouble(transfer_amount);
+        int transferFromId = Integer.parseInt(transfer_from);
+        int transferToId = Integer.parseInt(transfer_to);
+
+        //Checking to see if user is transferring to same account
+
+        if (transferFromId == transferToId) {
+            redirectAttributes.addFlashAttribute("error", "Can not transfer to same account please choose another account");
+            return "redirect:/app/dashboard";
+        }
+
+
+        //Checking to see if the transfer amount is below zero
+
+        if(transferAmt <=0) {
+            redirectAttributes.addFlashAttribute("error", "Transfer amount must be greater than zero");
+            return "redirect:/app/dashboard";
+        }
+        //
+
+        //Getting the logged in user
+
+        user = (User)session.getAttribute("user");
+
+
+        // Getting the users current balance
+
+        double currentBalanceAccFrom = accountRepository.getAccountBalance(user.getUser_id(), transferFromId);
+        double currentBalanceAccTo = accountRepository.getAccountBalance(user.getUser_id(), transferToId);
+
+        //Checking to see if there is sufficient funds
+        if (transferAmt > currentBalanceAccFrom) {
+
+
+            return "redirect:/app/dashboard";
+        }
+
+        // Setting the new Balance
+        double newBalanceTransferFrom = currentBalanceAccFrom - transferAmt;
+
+        double newBalanceTransferTo = currentBalanceAccTo + transferAmt;
+
+        // Changing the balance of the account transferring from
+        accountRepository.changeAccountBalanceById(newBalanceTransferFrom, transferFromId);
+
+        // Change the Balance from the account transferring to
+        accountRepository.changeAccountBalanceById(newBalanceTransferTo, transferToId);
+
+        redirectAttributes.addFlashAttribute("success", "Amount was transferred Successfully!");
+        return "redirect:/app/dashboard";
+
+
+    }
 }
