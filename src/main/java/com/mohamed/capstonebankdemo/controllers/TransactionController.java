@@ -223,7 +223,7 @@ public class TransactionController {
 
         //Checking to see if there are sufficient funds
         if (paymentAmt > currentBalance) {
-            String reasonCode = "Insufficent funds";
+            String reasonCode = "Insufficient funds";
             paymentRepository.makePayment(accountId, beneficiary, account_number, paymentAmt, reference, "Failed", reasonCode, currentDateTime);
             //Logging the failed payment transaction
             transactionRepository.logTransaction(accountId, "Transfer", paymentAmt, "Online", "Failed", "Insufficient Funds", currentDateTime);

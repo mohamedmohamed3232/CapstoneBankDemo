@@ -8,7 +8,7 @@ const transferCard = document.querySelector(".transfer-card");
 const depositCard = document.querySelector(".deposit-card");
 const withdrawCard = document.querySelector(".withdraw-card");
 
-// Check For Transaction Type Evenet Listener:
+// Check For Transaction Type Event Listener:
 transactType.addEventListener("change",() =>{
 
     // Check For Transaction Type and Display Form:

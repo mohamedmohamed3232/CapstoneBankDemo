@@ -50,6 +50,11 @@ public class RegisterController {
             registrationPage.addObject("passwordMisMatch", "The passwords did not match" );
             return registrationPage;
         }
+        //Checking to see if the name fields are filled
+        if(first_name.isEmpty() || last_name.isEmpty()) {
+            registrationPage.addObject("empty-name", "The names can not be empty" );
+            return registrationPage;
+        }
         // Hashing the password for security
         String hashed_password = BCrypt.hashpw(password, BCrypt.gensalt());
 
