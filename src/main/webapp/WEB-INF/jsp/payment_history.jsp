@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,6 @@
 
 <!-- Header -->
 <c:import url="components/incl/header.jsp"/>
-
 
 
 <!-- Container -->
@@ -70,8 +69,6 @@
     <!-- End Of Card: Payment History Card -->
 </div>
 <!-- End Of Container -->
-
-
 
 
 <!-- Footer -->

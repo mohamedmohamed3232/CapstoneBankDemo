@@ -5,7 +5,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
-/*
+
+/**
 This is my model for the users table using persistence to map this entity
  */
 @Entity
@@ -28,6 +29,19 @@ public class User {
     private String password;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
+
+    public User() {
+    }
+
+    public User(int user_id, String first_name, String last_name, String email, String password, LocalDateTime created_at, LocalDateTime updated_at) {
+        this.user_id = user_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.password = password;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+    }
 
     public int getUser_id() {
         return user_id;
@@ -83,19 +97,6 @@ public class User {
 
     public void setUpated_at(LocalDateTime upated_at) {
         this.updated_at = upated_at;
-    }
-
-    public User() {
-    }
-
-    public User(int user_id, String first_name, String last_name, String email, String password, LocalDateTime created_at, LocalDateTime updated_at) {
-        this.user_id = user_id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.email = email;
-        this.password = password;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
     }
 
     @Override

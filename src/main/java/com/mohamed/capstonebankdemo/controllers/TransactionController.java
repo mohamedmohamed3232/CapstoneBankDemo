@@ -14,29 +14,23 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 
-/*
+/**
 This is the controller for the different transactions a user can do
  */
 @Controller
 @RequestMapping("/transact")
 public class TransactionController {
 
+    User user;
+    double new_balance;
+    double currentBalance;
+    LocalDateTime currentDateTime = LocalDateTime.now();
     @Autowired
     private AccountRepository accountRepository;
-
     @Autowired
     private PaymentRepository paymentRepository;
-
     @Autowired
     private TransactRepository transactionRepository;
-
-    User user;
-
-    double new_balance;
-
-    double currentBalance;
-
-    LocalDateTime currentDateTime = LocalDateTime.now();
 
     //This is the postmapping to retrieve the amount that the user wants to deposit
     @PostMapping("/deposit")
@@ -122,7 +116,7 @@ public class TransactionController {
         //Checking to see if there is sufficient funds
         if (transferAmt > currentBalanceAccFrom) {
             // This is used to failed on the logged transactions
-            transactionRepository.logTransaction(transferFromId, "Transfer", transferAmt, "Online","Failed", "Insufficient Funds", currentDateTime);
+            transactionRepository.logTransaction(transferFromId, "Transfer", transferAmt, "Online", "Failed", "Insufficient Funds", currentDateTime);
             redirectAttributes.addFlashAttribute("error", "Insufficient funds");
 
             return "redirect:/app/dashboard";
@@ -245,7 +239,6 @@ public class TransactionController {
 
 
     }
-
 
 
 }

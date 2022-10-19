@@ -1,12 +1,13 @@
+-- This is the SQL statement that helps set up the database
  DROP DATABASE IF EXISTS mo_bank;
 
- CREATE DATABASE mo_bank;
+ create DATABASE mo_bank;
 
 
- USE mo_bank;
+ use mo_bank;
 
  -- USERS TABLE STRUCTURE:
- CREATE TABLE users(
+ create TABLE users(
 	user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
@@ -18,7 +19,7 @@
 
 
  -- BANK ACCOUNTS TABLE STRUCTURE:
- CREATE TABLE accounts(
+ create TABLE accounts(
 	 account_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
      user_id INT,
      account_number VARCHAR(100) NOT NULL,
@@ -27,12 +28,12 @@
      balance DECIMAL(18, 2) DEFAULT 0.00,
      created_at TIMESTAMP DEFAULT NOW(),
      updated_at TIMESTAMP DEFAULT NOW(),
-     FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE
+     FOREIGN KEY(user_id) REFERENCES users(user_id) ON delete CASCADE
  );
 
 
  -- TRANSACTION HISTORY TABLE:
- CREATE TABLE transaction_history(
+ create TABLE transaction_history(
 	transaction_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     account_id INT,
     transaction_type VARCHAR(50) NOT NULL,
@@ -41,11 +42,11 @@
     status VARCHAR(50) NULL, -- success / failed
     reason_code VARCHAR(100) NULL, -- INSUFFICIENT FUNDS
     created_at TIMESTAMP DEFAULT NOW(),
-    FOREIGN KEY(account_id) REFERENCES accounts(account_id) ON DELETE CASCADE
+    FOREIGN KEY(account_id) REFERENCES accounts(account_id) ON delete CASCADE
  );
 
  -- PAYMENTS TABLE STRUCTURE:
- CREATE TABLE payments(
+ create TABLE payments(
 	payment_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     account_id INT,
     beneficiary VARCHAR(50) NULL,
@@ -55,14 +56,14 @@
     status VARCHAR(50) NULL, -- success / failed
     reason_code VARCHAR(100) NULL, -- INSUFFICIENT FUNDS
     created_at TIMESTAMP DEFAULT NOW(),
-    FOREIGN KEY(account_id) REFERENCES accounts(account_id) ON DELETE CASCADE
+    FOREIGN KEY(account_id) REFERENCES accounts(account_id) ON delete CASCADE
  );
 
 
  -- TRANSACTION HISTORY VIEW:
- CREATE VIEW v_transaction_history
- AS
- SELECT
+ create view v_transaction_history
+ as
+ select
 	t.transaction_id,
     a.account_id,
     u.user_id,
@@ -72,23 +73,23 @@
     t.status,
     t.reason_code,
     t.created_at
-FROM
-	transaction_history AS t
-INNER JOIN
-	accounts AS a
-ON
+from
+	transaction_history as t
+inner join
+	accounts as a
+on
 	t.account_id = a.account_id
-INNER JOIN
+inner join
 	userS as u
-ON
+on
 	a.user_id = u.user_id;
 
 
 
  -- PAYMENT HISTORY VIEW:
- CREATE VIEW v_payments
- AS
- SELECT
+ create view v_payments
+ as
+ select
 	p.payment_id,
     a.account_id,
     u.user_id,
@@ -99,15 +100,15 @@ ON
     p.reference_no,
     p.reason_code,
     p.created_at
-FROM
- payments AS p
-INNER JOIN
-	accounts AS a
- ON
+from
+ payments as p
+inner join
+	accounts as a
+ on
 	p.account_id = a.account_id
-INNER JOIN
-	users AS u
-ON
+inner join
+	users as u
+on
 	a.user_id = u.user_id;
 
 

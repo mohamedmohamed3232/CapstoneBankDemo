@@ -4,7 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
-
+/**
+This is the transactional model that allows for transactions to be done and then later on logged
+ */
 @Entity
 @Table(name = "transactional")
 public class Transact {
@@ -17,6 +19,20 @@ public class Transact {
     private String status;
     private String reason_code;
     private LocalDateTime created_at;
+
+    public Transact() {
+    }
+
+    public Transact(int transaction_id, int account_id, String transaction_type, double amount, String source, String status, String reason_code, LocalDateTime created_at) {
+        this.transaction_id = transaction_id;
+        this.account_id = account_id;
+        this.transaction_type = transaction_type;
+        this.amount = amount;
+        this.source = source;
+        this.status = status;
+        this.reason_code = reason_code;
+        this.created_at = created_at;
+    }
 
     public int getTransaction_id() {
         return transaction_id;
@@ -79,20 +95,6 @@ public class Transact {
     }
 
     public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
-    }
-
-    public Transact() {
-    }
-
-    public Transact(int transaction_id, int account_id, String transaction_type, double amount, String source, String status, String reason_code, LocalDateTime created_at) {
-        this.transaction_id = transaction_id;
-        this.account_id = account_id;
-        this.transaction_type = transaction_type;
-        this.amount = amount;
-        this.source = source;
-        this.status = status;
-        this.reason_code = reason_code;
         this.created_at = created_at;
     }
 

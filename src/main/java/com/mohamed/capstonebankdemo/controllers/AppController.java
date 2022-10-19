@@ -16,26 +16,25 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.List;
-
+/**
+This is the controller for the dashboard as well as the menu navigation at the top of the page once logged in
+ */
 @Controller
 @RequestMapping("/app")
 public class AppController {
+    User user;
     @Autowired
     private AccountRepository accountRepository;
-
     @Autowired
     private PaymentHistoryRepository paymentHistoryRepository;
-
     @Autowired
     private TransactHistoryRepository transactHistoryRepository;
 
-    User user;
-
     @GetMapping("/dashboard")
-    public ModelAndView getDashboard(HttpSession session){
+    public ModelAndView getDashboard(HttpSession session) {
         ModelAndView getDashboardPage = new ModelAndView("dashboard");
         // We are getting all the details for the user who logged in
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         // Getting the accounts of the logged in User
         List<Account> getUserAccounts = accountRepository.getUserAccountsById(user.getUser_id());
 
@@ -48,8 +47,9 @@ public class AppController {
 
         return getDashboardPage;
     }
+
     @GetMapping("/payment_history")
-    public ModelAndView getPaymentHistory(HttpSession session){
+    public ModelAndView getPaymentHistory(HttpSession session) {
         //Setting the payment history view
         ModelAndView getPaymentHistoryPage = new ModelAndView("payment_history");
 
@@ -61,8 +61,9 @@ public class AppController {
         getPaymentHistoryPage.addObject("payment_history", userPaymentHistory);
         return getPaymentHistoryPage;
     }
+
     @GetMapping("/transact_history")
-    public ModelAndView getTransactHistory(HttpSession session){
+    public ModelAndView getTransactHistory(HttpSession session) {
         // Set the transaction history view
         ModelAndView getTransactHistoryPage = new ModelAndView("transact_history");
 

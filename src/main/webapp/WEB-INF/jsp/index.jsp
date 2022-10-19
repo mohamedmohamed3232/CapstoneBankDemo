@@ -27,11 +27,9 @@
 
         <!-- Card Text -->
         <p class="card-text" style="color: white">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam fuga,
-            cupiditate temporibus magnam voluptatibus eaque laudantium,
-            maxime nemo est iste voluptate veniam sequi optio nesciunt! Perspiciatis officia,
-            dolor qui nesciunt aspernatur sequi minima totam. Recusandae deserunt expedita vel excepturi perferendis necessitatibus,
-            saepe laudantium distinctio officia aliquam, reprehenderit suscipit nostrum aspernatur?
+           Here at Mo Bank we believe that every one deserves a bank that not only cares for them but also actively looks out for their best interest.
+            Though many would say mo money means mo problems we at Mo Bank believes there is no problem that can not be solved with MO Money so please join our
+            banking family. We work for you
         </p>
         <!-- End Of Card Text -->
 

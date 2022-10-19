@@ -1,8 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<!-- Container: No Accounts  -->
+<!-- Container: No Accounts -->
 <div class="container">
     <!-- Card: No Accounts -->
     <div class="card no-accounts-card">
@@ -21,7 +21,8 @@
             </div>
             <!-- End Of Card Text -->
             <br>
-            <button id="" class="btn btn-primary btn-lg shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            <button id="" class="btn btn-primary btn-lg shadow" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                 <i class="fa fa-credit-card"></i> Add New Account
             </button>
 
@@ -31,4 +32,4 @@
     <!-- End Of Card: No Accounts -->
 
 </div>
-<!-- End Of Container: No Accounts  -->
+<!-- End Of Container: No Accounts -->

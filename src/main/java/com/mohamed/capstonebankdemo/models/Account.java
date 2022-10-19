@@ -5,7 +5,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-/*
+
+/**
 This is my model for the accounts table using persistence to map this entity
  */
 @Entity
@@ -21,6 +22,20 @@ public class Account {
     private BigDecimal balance;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
+
+    public Account() {
+    }
+
+    public Account(int account_id, int user_id, String account_number, String account_name, String account_type, BigDecimal balance, LocalDateTime created_at, LocalDateTime updated_at) {
+        this.account_id = account_id;
+        this.user_id = user_id;
+        this.account_number = account_number;
+        this.account_name = account_name;
+        this.account_type = account_type;
+        this.balance = balance;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+    }
 
     public int getAccount_id() {
         return account_id;
@@ -83,20 +98,6 @@ public class Account {
     }
 
     public void setUpdated_at(LocalDateTime updated_at) {
-        this.updated_at = updated_at;
-    }
-
-    public Account() {
-    }
-
-    public Account(int account_id, int user_id, String account_number, String account_name, String account_type, BigDecimal balance, LocalDateTime created_at, LocalDateTime updated_at) {
-        this.account_id = account_id;
-        this.user_id = user_id;
-        this.account_number = account_number;
-        this.account_name = account_name;
-        this.account_type = account_type;
-        this.balance = balance;
-        this.created_at = created_at;
         this.updated_at = updated_at;
     }
 

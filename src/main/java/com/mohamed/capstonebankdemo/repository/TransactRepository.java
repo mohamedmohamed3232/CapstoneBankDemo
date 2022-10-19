@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
+/**
+ * This is the Transaction repository that allows transactons to be put stored in the database
+ */
 @Repository
 public interface TransactRepository extends CrudRepository<Transact, Integer> {
 

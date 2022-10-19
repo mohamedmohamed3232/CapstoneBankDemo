@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
-
+/**
+This is the model for the View of payments that will be used in the payments history page
+ */
 @Entity
 @Table(name = "v_payments")
 public class PaymentHistory {
@@ -20,6 +22,22 @@ public class PaymentHistory {
     private String reference_no;
     private String reason_code;
     private LocalDateTime created_at;
+
+    public PaymentHistory() {
+    }
+
+    public PaymentHistory(int payment_id, int account_id, int user_id, String beneficiary, String beneficiary_acc_no, double amount, String status, String reference_no, String reason_code, LocalDateTime created_at) {
+        this.payment_id = payment_id;
+        this.account_id = account_id;
+        this.user_id = user_id;
+        this.beneficiary = beneficiary;
+        this.beneficiary_acc_no = beneficiary_acc_no;
+        this.amount = amount;
+        this.status = status;
+        this.reference_no = reference_no;
+        this.reason_code = reason_code;
+        this.created_at = created_at;
+    }
 
     public int getPayment_id() {
         return payment_id;
@@ -98,22 +116,6 @@ public class PaymentHistory {
     }
 
     public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
-    }
-
-    public PaymentHistory() {
-    }
-
-    public PaymentHistory(int payment_id, int account_id, int user_id, String beneficiary, String beneficiary_acc_no, double amount, String status, String reference_no, String reason_code, LocalDateTime created_at) {
-        this.payment_id = payment_id;
-        this.account_id = account_id;
-        this.user_id = user_id;
-        this.beneficiary = beneficiary;
-        this.beneficiary_acc_no = beneficiary_acc_no;
-        this.amount = amount;
-        this.status = status;
-        this.reference_no = reference_no;
-        this.reason_code = reason_code;
         this.created_at = created_at;
     }
 

@@ -4,7 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
-/*
+
+/**
 This is my model for the payments table using persistence to map this entity
  */
 @Entity
@@ -19,6 +20,20 @@ public class Payment {
     private String reference_no;
     private String reason_code;
     private LocalDateTime created_at;
+
+    public Payment() {
+    }
+
+    public Payment(int payment_id, int account_id, String beneficiary, String beneficiary_acc_no, double amount, String reference_no, String reason_code, LocalDateTime created_at) {
+        this.payment_id = payment_id;
+        this.account_id = account_id;
+        this.beneficiary = beneficiary;
+        this.beneficiary_acc_no = beneficiary_acc_no;
+        this.amount = amount;
+        this.reference_no = reference_no;
+        this.reason_code = reason_code;
+        this.created_at = created_at;
+    }
 
     public int getPayment_id() {
         return payment_id;
@@ -81,20 +96,6 @@ public class Payment {
     }
 
     public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
-    }
-
-    public Payment() {
-    }
-
-    public Payment(int payment_id, int account_id, String beneficiary, String beneficiary_acc_no, double amount, String reference_no, String reason_code, LocalDateTime created_at) {
-        this.payment_id = payment_id;
-        this.account_id = account_id;
-        this.beneficiary = beneficiary;
-        this.beneficiary_acc_no = beneficiary_acc_no;
-        this.amount = amount;
-        this.reference_no = reference_no;
-        this.reason_code = reason_code;
         this.created_at = created_at;
     }
 

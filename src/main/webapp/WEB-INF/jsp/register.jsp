@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,14 +47,16 @@
             <div class="row">
                 <!-- From Group -->
                 <div class="form-group col">
-                    <form:input type="text" path="first_name" class="form-control form-control-lg" placeholder="Enter First Name"/>
+                    <form:input type="text" path="first_name" class="form-control form-control-lg"
+                                placeholder="Enter First Name"/>
                     <form:errors path="first_name" class="text-white bg-danger"/>
                 </div>
                 <!-- End Of From Group -->
 
                 <!-- From Group -->
                 <div class="form-group col">
-                    <form:input type="text" path="last_name" class="form-control form-control-lg" placeholder="Enter Last Name"/>
+                    <form:input type="text" path="last_name" class="form-control form-control-lg"
+                                placeholder="Enter Last Name"/>
                     <form:errors path="last_name" class="text-white bg-danger"/>
                 </div>
                 <!-- End Of From Group -->
@@ -73,14 +75,16 @@
             <div class="row">
                 <!-- From Group -->
                 <div class="form-group col">
-                    <form:input type="password" path="password" class="form-control form-control-lg" placeholder="Enter Password"/>
+                    <form:input type="password" path="password" class="form-control form-control-lg"
+                                placeholder="Enter Password"/>
                     <form:errors path="password" class="text-white bg-danger"/>
                 </div>
                 <!-- End Of From Group -->
 
                 <!-- From Group -->
                 <div class="form-group col">
-                    <input type="password" name="confirm_password" class="form-control form-control-lg" placeholder="Confirm Password"/>
+                    <input type="password" name="confirm_password" class="form-control form-control-lg"
+                           placeholder="Confirm Password"/>
                     <small class="text-white bg-danger">${confirm_pass}</small>
                 </div>
                 <!-- End Of From Group -->
@@ -98,7 +102,8 @@
 
         <!-- Card Text -->
         <p class="card-text text-white my-2">
-            Already have an account? <span class="ms-2"><a href="/login" class="btn bt-sm text-warning">Sign In</a></span>
+            Already have an account? <span class="ms-2"><a href="/login"
+                                                           class="btn bt-sm text-warning">Sign In</a></span>
         </p>
         <!-- Card Text -->
 

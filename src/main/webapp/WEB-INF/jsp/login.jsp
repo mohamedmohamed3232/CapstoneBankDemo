@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +59,8 @@
 
             <!-- From Group -->
             <div class="form-group col">
-                <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter Password"/>
+                <input type="password" name="password" class="form-control form-control-lg"
+                       placeholder="Enter Password"/>
             </div>
             <!-- End Of From Group -->
 
@@ -80,7 +81,8 @@
 
         <!-- Card Text -->
         <p class="card-text text-white my-2">
-            Dont have an account? <span class="ms-2"><a href="/register" class="btn bt-sm text-warning">Sign Up</a></span>
+            Dont have an account? <span class="ms-2"><a href="/register"
+                                                        class="btn bt-sm text-warning">Sign Up</a></span>
         </p>
         <!-- Card Text -->
 

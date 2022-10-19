@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-
+/**
+This is the Payment Repository that helps inset values in the payments database
+ */
 @Repository
 public interface PaymentRepository extends CrudRepository<Payment, Integer> {
     @Modifying
@@ -24,7 +26,6 @@ public interface PaymentRepository extends CrudRepository<Payment, Integer> {
                      @Param("status") String Status,
                      @Param("reason_code") String reason_code,
                      @Param("created_at") LocalDateTime created_at);
-
 
 
 }

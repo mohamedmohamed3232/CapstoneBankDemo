@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
-
+/**
+This is the repository for the accounts this helps store and retrieve account info from the database
+ */
 @Repository
 public interface AccountRepository extends CrudRepository<Account, Integer> {
     //Query where we are getting all the accounts for the User by userId
@@ -21,12 +23,14 @@ public interface AccountRepository extends CrudRepository<Account, Integer> {
     // using userID
     @Query(value = "SELECT sum(balance) FROM accounts WHERE user_id = :user_id", nativeQuery = true)
     BigDecimal getTotalBalance(@Param("user_id") int user_id);
+
     // Query to get the users account balance through UserId
     @Query(value = "SELECT balance FROM accounts WHERE user_id = :user_id AND :account_id = account_id", nativeQuery = true)
     double getAccountBalance(@Param("user_id") int user_id, @Param("account_id") int account_id);
+
     //This is a query to update the balance after the user goes through a transaction
     @Modifying
-    @Query(value ="UPDATE accounts SET balance = :new_balance WHERE account_id = :account_id" , nativeQuery = true)
+    @Query(value = "UPDATE accounts SET balance = :new_balance WHERE account_id = :account_id", nativeQuery = true)
     @Transactional
     void changeAccountBalanceById(@Param("new_balance") double new_balance, @Param("account_id") int account_id);
 
@@ -38,5 +42,5 @@ public interface AccountRepository extends CrudRepository<Account, Integer> {
     void createBankAccount(@Param("user_id") int user_id,
                            @Param("account_number") String account_number,
                            @Param("account_name") String account_name,
-                           @Param("account_type")String account_type);
+                           @Param("account_type") String account_type);
 }

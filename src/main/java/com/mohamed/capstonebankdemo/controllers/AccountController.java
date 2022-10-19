@@ -12,7 +12,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
-//Account Controller for accounts
+/**
+This is the controller for all account based activity
+ */
 @Controller
 @RequestMapping("/account")
 public class AccountController {

@@ -13,11 +13,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-
+/**
+This is the Authentication controller for when a user is logging in or logging out
+ */
 @Controller
 public class AuthController {
     @Autowired
     private UserRepository userRepository;
+
     @GetMapping("/login")
     public ModelAndView getLogin() {
         ModelAndView getLoginPage = new ModelAndView("login");
@@ -26,6 +29,7 @@ public class AuthController {
         return getLoginPage;
 
     }
+
     @PostMapping("/login")
     public String login(@RequestParam("email") String email,
                         @RequestParam("password") String password,
@@ -58,10 +62,11 @@ public class AuthController {
         return "redirect:/app/dashboard";
 
     }
+
     @GetMapping("/logout")
-    public String logout(HttpSession session, RedirectAttributes redirectAttributes){
+    public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
         session.invalidate();
-        redirectAttributes.addFlashAttribute("logged_out","You have logged out successfully");
+        redirectAttributes.addFlashAttribute("logged_out", "You have logged out successfully");
         return "redirect:/login";
     }
 }

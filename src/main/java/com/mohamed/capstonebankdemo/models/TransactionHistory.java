@@ -4,7 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
-
+/**
+This is the transaction history model for the transaction history page
+ */
 @Entity
 @Table(name = "v_transaction_history")
 public class TransactionHistory {
@@ -15,10 +17,25 @@ public class TransactionHistory {
     private int user_id;
     private String transaction_type;
     private double amount;
-    private String  source;
-    private String  status;
-    private String  reason_code;
+    private String source;
+    private String status;
+    private String reason_code;
     private LocalDateTime created_at;
+
+    public TransactionHistory() {
+    }
+
+    public TransactionHistory(int transaction_id, int account_id, int user_id, String transaction_type, double amount, String source, String status, String reason_code, LocalDateTime created_at) {
+        this.transaction_id = transaction_id;
+        this.account_id = account_id;
+        this.user_id = user_id;
+        this.transaction_type = transaction_type;
+        this.amount = amount;
+        this.source = source;
+        this.status = status;
+        this.reason_code = reason_code;
+        this.created_at = created_at;
+    }
 
     public int getTransaction_id() {
         return transaction_id;
@@ -89,21 +106,6 @@ public class TransactionHistory {
     }
 
     public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
-    }
-
-    public TransactionHistory() {
-    }
-
-    public TransactionHistory(int transaction_id, int account_id, int user_id, String transaction_type, double amount, String source, String status, String reason_code, LocalDateTime created_at) {
-        this.transaction_id = transaction_id;
-        this.account_id = account_id;
-        this.user_id = user_id;
-        this.transaction_type = transaction_type;
-        this.amount = amount;
-        this.source = source;
-        this.status = status;
-        this.reason_code = reason_code;
         this.created_at = created_at;
     }
 

@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- Right Side Offcanvas: Accounts Form Container -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
@@ -14,7 +14,7 @@
         <div class="card">
             <!-- Card Body -->
             <div class="card-body">
-                <form action="/account/create_account"  method="POST" class="add-account-form">
+                <form action="/account/create_account" method="POST" class="add-account-form">
                     <!-- Form Group -->
                     <div class="form-group mb-3">
                         <label for=""> Enter Account Name</label>

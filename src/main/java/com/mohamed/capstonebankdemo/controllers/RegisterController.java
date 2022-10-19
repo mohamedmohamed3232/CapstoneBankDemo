@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-/*
+
+/**
 This is the controller to control the registration page of the application
  */
 @Controller
@@ -21,7 +22,8 @@ public class RegisterController {
     //Creating an instance of the repository in order to use
     @Autowired
     private UserRepository userRepository;
-//Mapping for registration page
+
+    //Mapping for registration page
     @GetMapping("/register")
     public ModelAndView getRegister() {
         ModelAndView getLoginPage = new ModelAndView("register");
@@ -30,7 +32,8 @@ public class RegisterController {
         return getLoginPage;
 
     }
-//Post mapping in order to retrieve the information form the user to register
+
+    //Post mapping in order to retrieve the information form the user to register
     @PostMapping("/register")
     public ModelAndView register(@Valid @ModelAttribute("registerUser")
                                  User user, BindingResult result,
@@ -47,12 +50,12 @@ public class RegisterController {
         }
         // Check if the password matches
         if (!password.equals(confirm_password)) {
-            registrationPage.addObject("passwordMisMatch", "The passwords did not match" );
+            registrationPage.addObject("passwordMisMatch", "The passwords did not match");
             return registrationPage;
         }
         //Checking to see if the name fields are filled
-        if(first_name.isEmpty() || last_name.isEmpty()) {
-            registrationPage.addObject("empty-name", "The names can not be empty" );
+        if (first_name.isEmpty() || last_name.isEmpty()) {
+            registrationPage.addObject("empty-name", "The names can not be empty");
             return registrationPage;
         }
         // Hashing the password for security
