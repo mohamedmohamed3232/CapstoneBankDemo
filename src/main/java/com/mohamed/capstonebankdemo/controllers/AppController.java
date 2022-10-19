@@ -2,9 +2,11 @@ package com.mohamed.capstonebankdemo.controllers;
 
 import com.mohamed.capstonebankdemo.models.Account;
 import com.mohamed.capstonebankdemo.models.PaymentHistory;
+import com.mohamed.capstonebankdemo.models.TransactionHistory;
 import com.mohamed.capstonebankdemo.models.User;
 import com.mohamed.capstonebankdemo.repository.AccountRepository;
 import com.mohamed.capstonebankdemo.repository.PaymentHistoryRepository;
+import com.mohamed.capstonebankdemo.repository.TransactHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,9 @@ public class AppController {
 
     @Autowired
     private PaymentHistoryRepository paymentHistoryRepository;
+
+    @Autowired
+    private TransactHistoryRepository transactHistoryRepository;
 
     User user;
 
@@ -55,5 +60,21 @@ public class AppController {
         List<PaymentHistory> userPaymentHistory = paymentHistoryRepository.getPaymentHistoriesByID(user.getUser_id());
         getPaymentHistoryPage.addObject("payment_history", userPaymentHistory);
         return getPaymentHistoryPage;
+    }
+    @GetMapping("/transact_history")
+    public ModelAndView getTransactHistory(HttpSession session){
+        // Set the transaction history view
+        ModelAndView getTransactHistoryPage = new ModelAndView("transact_history");
+
+        // Get Logged In User:\
+        user = (User) session.getAttribute("user");
+
+        // Get Payment History / Records:
+        List<TransactionHistory> userTransactHistory = transactHistoryRepository.getTransactionRecordsById(user.getUser_id());
+
+        getTransactHistoryPage.addObject("transact_history", userTransactHistory);
+
+        return getTransactHistoryPage;
+
     }
 }
