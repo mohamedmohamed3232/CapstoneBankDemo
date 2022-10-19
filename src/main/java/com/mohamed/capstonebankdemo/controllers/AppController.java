@@ -1,8 +1,10 @@
 package com.mohamed.capstonebankdemo.controllers;
 
 import com.mohamed.capstonebankdemo.models.Account;
+import com.mohamed.capstonebankdemo.models.PaymentHistory;
 import com.mohamed.capstonebankdemo.models.User;
 import com.mohamed.capstonebankdemo.repository.AccountRepository;
+import com.mohamed.capstonebankdemo.repository.PaymentHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,11 @@ import java.util.List;
 public class AppController {
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    private PaymentHistoryRepository paymentHistoryRepository;
+
+    User user;
 
     @GetMapping("/dashboard")
     public ModelAndView getDashboard(HttpSession session){
@@ -35,5 +42,18 @@ public class AppController {
         getDashboardPage.addObject("totalBalance", totalAccountsBalance);
 
         return getDashboardPage;
+    }
+    @GetMapping("/payment_history")
+    public ModelAndView getPaymentHistory(HttpSession session){
+        //Setting the payment history view
+        ModelAndView getPaymentHistoryPage = new ModelAndView("payment_history");
+
+        // Getting the logged in user
+        user = (User) session.getAttribute("user");
+
+        //Getting the payment history records
+        List<PaymentHistory> userPaymentHistory = paymentHistoryRepository.getPaymentHistoriesByID(user.getUser_id());
+        getPaymentHistoryPage.addObject("payment_history", userPaymentHistory);
+        return getPaymentHistoryPage;
     }
 }
